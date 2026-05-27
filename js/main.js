@@ -5,8 +5,35 @@
 window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 800);
   initParticleCanvas();
-  animateHeroTitle();
+  initRotatingText();
 });
+
+/* ===========================
+   ROTATING HERO TEXT
+=========================== */
+function initRotatingText() {
+  const el = document.getElementById('heroRotating');
+  if (!el) return;
+  const words = ['Dream Home', 'Office Complex', 'Dream Villa', 'Future', 'Legacy'];
+  let i = 0;
+  setInterval(() => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(-12px)';
+    setTimeout(() => {
+      i = (i + 1) % words.length;
+      el.textContent = words[i];
+      el.style.transition = 'none';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(12px)';
+      requestAnimationFrame(() => {
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    }, 400);
+    el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  }, 2800);
+}
 
 /* ===========================
    PARTICLE OVERLAY (on top of video)
