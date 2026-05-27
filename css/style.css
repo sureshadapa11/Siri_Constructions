@@ -816,17 +816,21 @@ input, select, textarea { font-family: inherit; }
   .hamburger { display: flex; }
   .nav-links.open {
     display: flex; flex-direction: column;
-    position: fixed; inset: 0; background: rgba(10,20,35,0.98);
-    backdrop-filter: blur(16px);
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100vh;
+    background: #0a1428;
     align-items: center; justify-content: center; gap: 40px;
     z-index: 1050;
+    overflow: hidden;
   }
   .nav-links.open a {
     font-size: 1.5rem; color: var(--white); font-weight: 600;
-    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
-    width: 200px; text-align: center;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    width: 220px; text-align: center; display: block;
   }
   .nav-links.open a:hover { color: var(--orange); border-color: var(--orange); }
+  /* Lock body scroll when menu is open */
+  body.nav-open { overflow: hidden; height: 100vh; }
   .about-grid { grid-template-columns: 1fr; }
   .about-img-secondary { display: none; }
   .experience-badge { top: 16px; left: 16px; }
