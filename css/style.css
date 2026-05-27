@@ -138,16 +138,36 @@ input, select, textarea { font-family: inherit; }
 .kb-slide {
   position: absolute; inset: 0;
   background-size: cover; background-position: center;
-  opacity: 0; animation: kbFade 32s infinite; will-change: transform, opacity;
+  opacity: 0; will-change: transform, opacity;
 }
-.kb-1 { background-image: url('https://images.unsplash.com/photo-1601619933635-023753974a65?auto=format&fit=crop&w=1920&q=85'); animation-delay: 0s; animation-name: kbZoom1; }
-.kb-2 { background-image: url('https://images.unsplash.com/photo-1632400386307-2b2f275b35da?auto=format&fit=crop&w=1920&q=85'); animation-delay: 8s; animation-name: kbZoom2; }
-.kb-3 { background-image: url('https://images.pexels.com/photos/7672059/pexels-photo-7672059.jpeg?auto=compress&cs=tinysrgb&w=1920'); animation-delay: 16s; animation-name: kbZoom3; }
-.kb-4 { background-image: url('https://images.pexels.com/photos/17391303/pexels-photo-17391303.jpeg?auto=compress&cs=tinysrgb&w=1920'); animation-delay: 24s; animation-name: kbZoom1; }
+/* kb-1 gets -2s delay so it starts fully visible immediately on page load (no dark flash) */
+.kb-1 { background-image: url('https://images.unsplash.com/photo-1601619933635-023753974a65?auto=format&fit=crop&w=1920&q=85'); animation: kbZoom1 32s -2s ease-in-out infinite both; }
+.kb-2 { background-image: url('https://images.unsplash.com/photo-1632400386307-2b2f275b35da?auto=format&fit=crop&w=1920&q=85'); animation: kbZoom2 32s  8s ease-in-out infinite both; }
+.kb-3 { background-image: url('https://images.pexels.com/photos/7672059/pexels-photo-7672059.jpeg?auto=compress&cs=tinysrgb&w=1920'); animation: kbZoom3 32s 16s ease-in-out infinite both; }
+.kb-4 { background-image: url('https://images.pexels.com/photos/17391303/pexels-photo-17391303.jpeg?auto=compress&cs=tinysrgb&w=1920'); animation: kbZoom1 32s 24s ease-in-out infinite both; }
 
-@keyframes kbZoom1 { 0%{opacity:0;transform:scale(1) translate(0%,0%)} 5%{opacity:1} 90%{opacity:1} 100%{opacity:0;transform:scale(1.12) translate(-2%,-1%)} }
-@keyframes kbZoom2 { 0%{opacity:0;transform:scale(1.08) translate(1%,0%)} 5%{opacity:1} 90%{opacity:1} 100%{opacity:0;transform:scale(1) translate(-1%,-2%)} }
-@keyframes kbZoom3 { 0%{opacity:0;transform:scale(1.05) translate(-1%,1%)} 5%{opacity:1} 90%{opacity:1} 100%{opacity:0;transform:scale(1.15) translate(2%,-1%)} }
+/* opacity goes to 0 at 97% — transform resets at 100% while invisible, preventing the snap-back flash */
+@keyframes kbZoom1 {
+  0%  { opacity:0; transform:scale(1)    translate(0%,  0%); }
+  6%  { opacity:1; }
+  87% { opacity:1; }
+  97% { opacity:0; }
+  100%{ opacity:0; transform:scale(1.12) translate(-2%,-1%); }
+}
+@keyframes kbZoom2 {
+  0%  { opacity:0; transform:scale(1.08) translate(1%,  0%); }
+  6%  { opacity:1; }
+  87% { opacity:1; }
+  97% { opacity:0; }
+  100%{ opacity:0; transform:scale(1)    translate(-1%,-2%); }
+}
+@keyframes kbZoom3 {
+  0%  { opacity:0; transform:scale(1.05) translate(-1%, 1%); }
+  6%  { opacity:1; }
+  87% { opacity:1; }
+  97% { opacity:0; }
+  100%{ opacity:0; transform:scale(1.15) translate(2%, -1%); }
+}
 
 #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 .hero-overlay {
