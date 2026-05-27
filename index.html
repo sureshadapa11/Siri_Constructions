@@ -12,6 +12,9 @@
 </head>
 <body>
 
+  <!-- Page Loading Progress Bar -->
+  <div id="pageProgress"></div>
+
   <!-- ===== PRELOADER ===== -->
   <div id="preloader">
     <div class="loader">
@@ -39,6 +42,7 @@
         <a href="#contact">Contact</a>
       </nav>
       <a href="#contact" class="btn btn-primary nav-cta">Get a Quote</a>
+      <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -734,8 +738,14 @@
     </div>
   </footer>
 
-  <!-- Scroll to top -->
-  <button id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+  <!-- Scroll to top with progress ring -->
+  <button id="scrollTop" aria-label="Scroll to top">
+    <svg class="progress-ring" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg">
+      <circle class="progress-ring-track" cx="29" cy="29" r="25"/>
+      <circle class="progress-ring-fill" id="progressRingFill" cx="29" cy="29" r="25"/>
+    </svg>
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <!-- WhatsApp Float Button -->
   <a href="https://wa.me/919876543210?text=Hi%20Siri%20Constructions%2C%20I%20would%20like%20to%20enquire%20about%20your%20services."
@@ -750,5 +760,18 @@
   </a>
 
   <script src="js/main.js"></script>
+
+  <!-- Tawk.to Live Chat — replace YOUR_PROPERTY_ID/YOUR_WIDGET_ID with your Tawk.to IDs from tawk.to dashboard -->
+  <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/YOUR_WIDGET_ID';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
 </body>
 </html>

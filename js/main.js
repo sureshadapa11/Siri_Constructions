@@ -141,14 +141,58 @@ function animateHeroTitle() {
 })();
 
 /* ===========================
+   PAGE LOADING PROGRESS BAR
+=========================== */
+const pageBar = document.getElementById('pageProgress');
+if (pageBar) {
+  let loadProgress = 0;
+  const loadTimer = setInterval(() => {
+    loadProgress += Math.random() * 18;
+    if (loadProgress > 85) loadProgress = 85;
+    pageBar.style.width = loadProgress + '%';
+  }, 200);
+  window.addEventListener('load', () => {
+    clearInterval(loadTimer);
+    pageBar.style.width = '100%';
+    setTimeout(() => { pageBar.style.opacity = '0'; }, 500);
+  });
+}
+
+/* ===========================
+   DARK MODE TOGGLE
+=========================== */
+const darkToggle = document.getElementById('darkToggle');
+if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark');
+  if (darkToggle) darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+}
+if (darkToggle) {
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('darkMode', isDark);
+    darkToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  });
+}
+
+/* ===========================
    NAVBAR + SCROLL
 =========================== */
 const navbar = document.getElementById('navbar');
 const scrollTopBtn = document.getElementById('scrollTop');
+const ringFill = document.getElementById('progressRingFill');
+const ringCircumference = 2 * Math.PI * 25;
+
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
   scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
   highlightNav();
+
+  // Progress ring around scroll-to-top button
+  if (ringFill) {
+    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    ringFill.style.strokeDashoffset = ringCircumference * (1 - Math.min(scrolled, 1));
+  }
 });
 
 /* ===========================

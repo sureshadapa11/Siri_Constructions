@@ -810,6 +810,79 @@ input, select, textarea { font-family: inherit; }
 }
 
 /* ===========================
+   PAGE LOADING PROGRESS BAR
+=========================== */
+#pageProgress {
+  position: fixed; top: 0; left: 0; z-index: 99999;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--orange), #ffb347, var(--orange));
+  background-size: 200% 100%;
+  box-shadow: 0 0 10px rgba(255,107,53,0.7);
+  transition: width 0.15s ease, opacity 0.5s ease;
+  animation: progressShimmer 1.5s linear infinite;
+}
+@keyframes progressShimmer { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
+
+/* ===========================
+   DARK MODE TOGGLE
+=========================== */
+.dark-toggle {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8); font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition); flex-shrink: 0;
+}
+.dark-toggle:hover { background: rgba(255,255,255,0.12); color: var(--white); border-color: rgba(255,255,255,0.5); }
+#navbar.scrolled .dark-toggle { border-color: var(--border); color: var(--dark-gray); }
+#navbar.scrolled .dark-toggle:hover { background: var(--light); color: var(--orange); }
+
+/* ===========================
+   PROGRESS RING (scroll-to-top)
+=========================== */
+#scrollTop { position: fixed; overflow: visible; background: var(--navy); }
+.progress-ring {
+  position: absolute; inset: -5px;
+  width: calc(100% + 10px); height: calc(100% + 10px);
+  transform: rotate(-90deg); pointer-events: none;
+}
+.progress-ring-track { fill: none; stroke: rgba(255,107,53,0.15); stroke-width: 2.5; }
+.progress-ring-fill {
+  fill: none; stroke: var(--orange); stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 157.08;
+  stroke-dashoffset: 157.08;
+  transition: stroke-dashoffset 0.15s ease;
+}
+
+/* ===========================
+   DARK MODE
+=========================== */
+body.dark {
+  --white: #111e2d;
+  --light: #162535;
+  --light-2: #1c2f42;
+  --dark-gray: #dde6f0;
+  --gray: #8fa3b8;
+  --border: #26394f;
+}
+body.dark .section-title { color: #dde6f0; }
+body.dark .service-card:not(.img-card) { background: var(--light); border-color: var(--border); }
+body.dark .service-card:not(.img-card):hover { background: var(--light-2); }
+body.dark .feature-item { background: var(--light-2); border-color: var(--border); }
+body.dark .why-item:hover { background: var(--light-2); border-color: var(--border); }
+body.dark .process-steps { background: var(--light); }
+body.dark .filter-btn { background: var(--light); border-color: var(--border); color: var(--gray); }
+body.dark .contact-form-wrap { background: var(--light); border-color: var(--border); }
+body.dark .form-group input,
+body.dark .form-group select,
+body.dark .form-group textarea { background: var(--light-2); border-color: var(--border); color: var(--dark-gray); }
+body.dark #navbar.scrolled { background: rgba(17,30,45,0.97); }
+body.dark #navbar.scrolled .logo-main { color: #dde6f0; }
+body.dark .hero-card-body h4 { color: var(--dark-gray); }
+body.dark .stat-card { background: rgba(255,255,255,0.05); }
+
+/* ===========================
    WHATSAPP FLOAT BUTTON
 =========================== */
 .whatsapp-float {
