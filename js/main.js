@@ -427,10 +427,25 @@ function initCinematicHero() {
 function animateHeroTitle() {
   const title = document.querySelector('.hero-title');
   if (!title) return;
-  const html = title.innerHTML;
-  title.innerHTML = html.replace(/([^\s<>]+)/g, (w) =>
-    w.startsWith('<') ? w : `<span class="word">${w} </span>`
-  );
+  // Walk only text nodes so HTML tags (<span>, <br>) are never touched
+  const walker = document.createTreeWalker(title, NodeFilter.SHOW_TEXT, null);
+  const textNodes = [];
+  let node;
+  while ((node = walker.nextNode())) textNodes.push(node);
+  textNodes.forEach(tn => {
+    const frag = document.createDocumentFragment();
+    tn.textContent.split(/(\s+)/).forEach(part => {
+      if (/^\s+$/.test(part)) {
+        frag.appendChild(document.createTextNode(part));
+      } else if (part) {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = part;
+        frag.appendChild(span);
+      }
+    });
+    tn.parentNode.replaceChild(frag, tn);
+  });
   title.querySelectorAll('.word').forEach((el, i) => {
     el.style.animationDelay = `${0.9 + i * 0.13}s`;
   });
