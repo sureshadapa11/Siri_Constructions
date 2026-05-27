@@ -143,9 +143,17 @@ input, select, textarea { font-family: inherit; }
 #navbar.scrolled .nav-links a { color: var(--dark-gray); }
 .nav-links a:hover { color: var(--orange); }
 .nav-cta { margin-left: 8px; padding: 10px 24px; font-size: 0.9rem; }
-.hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; margin-left: auto; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; padding: 4px; margin-left: auto;
+  position: relative; z-index: 1100;
+}
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
 #navbar.scrolled .hamburger span { background: var(--navy); }
+/* Animate hamburger → X when nav is open */
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hamburger.active span { background: var(--white) !important; }
 
 /* ===========================
    HERO
@@ -804,13 +812,21 @@ input, select, textarea { font-family: inherit; }
 @media (max-width: 768px) {
   .section { padding: 72px 0; }
   .nav-links, .nav-cta { display: none; }
+  .dark-toggle { display: none; }
   .hamburger { display: flex; }
   .nav-links.open {
     display: flex; flex-direction: column;
-    position: fixed; inset: 0; background: var(--navy);
-    align-items: center; justify-content: center; gap: 36px; z-index: 999;
+    position: fixed; inset: 0; background: rgba(10,20,35,0.98);
+    backdrop-filter: blur(16px);
+    align-items: center; justify-content: center; gap: 40px;
+    z-index: 1050;
   }
-  .nav-links.open a { font-size: 1.4rem; color: var(--white); }
+  .nav-links.open a {
+    font-size: 1.5rem; color: var(--white); font-weight: 600;
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: 200px; text-align: center;
+  }
+  .nav-links.open a:hover { color: var(--orange); border-color: var(--orange); }
   .about-grid { grid-template-columns: 1fr; }
   .about-img-secondary { display: none; }
   .experience-badge { top: 16px; left: 16px; }
