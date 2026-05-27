@@ -222,31 +222,55 @@ input, select, textarea { font-family: inherit; }
   overflow: hidden;
 }
 
-/* YouTube fullscreen background */
-#ytBg {
+/* Ken Burns slideshow */
+.kb-slides {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden;
+}
+.kb-slide {
   position: absolute; inset: 0;
-  z-index: 0; overflow: hidden;
-  pointer-events: none;
+  background-size: cover; background-position: center;
+  opacity: 0;
+  animation: kbFade 32s infinite;
+  will-change: transform, opacity;
 }
-/* Inner div gets the aspect-ratio fullscreen sizing */
-#ytPlayer {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 100vw;
-  height: 56.25vw;      /* 16:9 ratio */
-  min-height: 100vh;
-  min-width: 177.78vh;  /* 16:9 ratio */
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+.kb-1 {
+  background-image: url('https://images.unsplash.com/photo-1601619933635-023753974a65?auto=format&fit=crop&w=1920&q=85');
+  animation-delay: 0s;
+  animation-name: kbZoom1;
 }
-/* iframe fills the inner div completely */
-#ytPlayer iframe {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  pointer-events: none !important;
-  border: none !important;
+.kb-2 {
+  background-image: url('https://images.unsplash.com/photo-1632400386307-2b2f275b35da?auto=format&fit=crop&w=1920&q=85');
+  animation-delay: 8s;
+  animation-name: kbZoom2;
+}
+.kb-3 {
+  background-image: url('https://images.pexels.com/photos/7672059/pexels-photo-7672059.jpeg?auto=compress&cs=tinysrgb&w=1920');
+  animation-delay: 16s;
+  animation-name: kbZoom3;
+}
+.kb-4 {
+  background-image: url('https://images.pexels.com/photos/17391303/pexels-photo-17391303.jpeg?auto=compress&cs=tinysrgb&w=1920');
+  animation-delay: 24s;
+  animation-name: kbZoom1;
+}
+
+@keyframes kbZoom1 {
+  0%   { opacity: 0; transform: scale(1.0) translate(0%, 0%); }
+  5%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.12) translate(-2%, -1%); }
+}
+@keyframes kbZoom2 {
+  0%   { opacity: 0; transform: scale(1.08) translate(1%, 0%); }
+  5%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.0)  translate(-1%, -2%); }
+}
+@keyframes kbZoom3 {
+  0%   { opacity: 0; transform: scale(1.05) translate(-1%, 1%); }
+  5%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.15) translate(2%, -1%); }
 }
 
 /* Particle canvas sits on top of video */
@@ -265,14 +289,9 @@ input, select, textarea { font-family: inherit; }
     rgba(4,14,24,0.5) 100%
   );
 }
-/* Blocks ALL mouse events reaching the YouTube iframe (hides controls + title on hover) */
-.yt-shield {
-  position: absolute; inset: 0; z-index: 3;
-  background: transparent; cursor: default;
-}
 
-.hero-content { position: relative; z-index: 4; max-width: 800px; }
-.hero-scroll  { z-index: 4; }
+.hero-content { position: relative; z-index: 3; max-width: 800px; }
+.hero-scroll  { z-index: 3; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(255,107,53,0.15);

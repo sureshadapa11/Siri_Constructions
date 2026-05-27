@@ -1,34 +1,3 @@
-/* ===========================
-   YOUTUBE VIDEO BACKGROUND
-=========================== */
-var ytPlayer;
-function onYouTubeIframeAPIReady() {
-  ytPlayer = new YT.Player('ytPlayer', {
-    videoId: 'AlOxYvJYie0',
-    width: '100%', height: '100%',
-    playerVars: {
-      autoplay: 1, mute: 1, loop: 1, controls: 0,
-      playlist: 'AlOxYvJYie0',
-      rel: 0, showinfo: 0, iv_load_policy: 3,
-      modestbranding: 1, playsinline: 1, disablekb: 1,
-      fs: 0, cc_load_policy: 0, origin: window.location.origin,
-    },
-    events: {
-      onReady: (e) => {
-        e.target.mute();
-        e.target.playVideo();
-        // Force iframe to fill container regardless of YT inline styles
-        const iframe = document.querySelector('#ytPlayer iframe');
-        if (iframe) {
-          iframe.style.cssText = 'position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border:none!important;pointer-events:none!important;';
-        }
-      },
-      onStateChange: (e) => {
-        if (e.data === YT.PlayerState.ENDED) e.target.playVideo();
-      },
-    },
-  });
-}
 
 /* ===========================
    PRELOADER
