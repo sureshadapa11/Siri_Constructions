@@ -810,29 +810,6 @@ input, select, textarea { font-family: inherit; }
 }
 
 /* ===========================
-   AWARDS STRIP
-=========================== */
-.awards-strip {
-  background: var(--navy); padding: 18px 0;
-  overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.awards-track {
-  display: flex; width: max-content;
-  animation: awardsScroll 35s linear infinite;
-}
-.awards-strip:hover .awards-track { animation-play-state: paused; }
-.award-item {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 0 44px; white-space: nowrap;
-  color: rgba(255,255,255,0.65); font-size: 0.85rem; font-weight: 600;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-.award-item i { color: var(--orange); font-size: 1rem; flex-shrink: 0; }
-@keyframes awardsScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-/* ===========================
    WHATSAPP FLOAT BUTTON
 =========================== */
 .whatsapp-float {
