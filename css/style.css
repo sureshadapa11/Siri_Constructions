@@ -400,14 +400,43 @@ input, select, textarea { font-family: inherit; }
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, var(--orange), var(--orange-dark));
   transform: scaleX(0); transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); z-index: 2;
 }
 .service-card:hover::before { transform: scaleX(1); }
 .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); border-color: rgba(255,107,53,0.2); background: var(--white); }
 
+/* Image background cards */
+.service-card.img-card {
+  background-size: cover; background-position: center;
+  border-color: transparent;
+}
+.service-card.img-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(10,20,35,0.78) 0%, rgba(10,20,35,0.65) 100%);
+  border-radius: inherit; z-index: 0;
+  transition: background 0.4s ease;
+}
+.service-card.img-card:hover::after {
+  background: linear-gradient(160deg, rgba(10,20,35,0.88) 0%, rgba(200,60,10,0.55) 100%);
+}
+.service-card.img-card > * { position: relative; z-index: 1; }
+.service-card.img-card h3 { color: var(--white); }
+.service-card.img-card p { color: rgba(255,255,255,0.72); }
+.service-card.img-card .service-link { color: var(--orange); }
+.service-card.img-card .service-num { color: rgba(255,255,255,0.06); }
+.service-card.img-card .service-icon.orange { background: rgba(255,107,53,0.25); color: var(--white); }
+.service-card.img-card:hover .service-icon.orange { background: var(--orange); color: var(--white); }
+.service-card.img-card:hover { border-color: rgba(255,107,53,0.4); }
+
 .service-card.featured {
   background: linear-gradient(145deg, var(--navy), var(--navy-mid));
   border-color: transparent; color: var(--white);
+}
+.service-card.featured.img-card::after {
+  background: linear-gradient(160deg, rgba(5,15,30,0.82) 0%, rgba(10,30,60,0.7) 100%);
+}
+.service-card.featured.img-card:hover::after {
+  background: linear-gradient(160deg, rgba(5,15,30,0.88) 0%, rgba(180,50,5,0.55) 100%);
 }
 .service-card.featured::before { background: linear-gradient(90deg, var(--orange), #ffb347); }
 .service-card.featured h3 { color: var(--white); }
