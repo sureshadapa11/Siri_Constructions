@@ -221,18 +221,40 @@ input, select, textarea { font-family: inherit; }
   overflow: hidden; width: 100%; max-width: 390px;
   box-shadow: 0 24px 60px rgba(0,0,0,0.4);
   animation: floatCard 5s ease-in-out infinite;
+  position: relative;
 }
 @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-.hero-card-img { position: relative; height: 195px; overflow: hidden; }
-.hero-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 6s ease; }
-.hero-card:hover .hero-card-img img { transform: scale(1.07); }
+
 .hero-card-live {
-  position: absolute; top: 12px; right: 12px;
+  position: absolute; top: 12px; right: 12px; z-index: 10;
   background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
   color: var(--white); font-size: 0.72rem; font-weight: 700;
   padding: 5px 12px; border-radius: 50px;
   display: flex; align-items: center; gap: 6px;
 }
+
+.hero-card-slides { position: relative; }
+.hc-slide {
+  display: none; opacity: 0;
+  transition: opacity 0.55s ease;
+}
+.hc-slide.active { display: block; opacity: 1; }
+.hc-slide.fade-out { display: block; opacity: 0; }
+
+.hero-card-img { position: relative; height: 195px; overflow: hidden; }
+.hero-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 6s ease; }
+.hc-slide.active .hero-card-img img { transform: scale(1.05); }
+
+.hc-dots {
+  display: flex; gap: 6px; justify-content: center;
+  padding: 10px 0 14px;
+}
+.hc-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); cursor: pointer;
+  transition: all 0.35s ease;
+}
+.hc-dot.active { background: var(--orange); width: 20px; border-radius: 3px; }
 .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse-dot 1.5s ease-in-out infinite; }
 .hero-card-body { padding: 18px 22px; }
 .hero-card-tag {

@@ -113,6 +113,34 @@ function animateHeroTitle() {
 }
 
 /* ===========================
+   LIVE PROJECT CARD SLIDER
+=========================== */
+(function initLiveProjectSlider() {
+  const slides = document.querySelectorAll('.hc-slide');
+  const dotsContainer = document.getElementById('hcDots');
+  if (!slides.length || !dotsContainer) return;
+
+  let current = 0;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'hc-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToSlide(idx) {
+    slides[current].classList.remove('active');
+    dotsContainer.querySelectorAll('.hc-dot')[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsContainer.querySelectorAll('.hc-dot')[current].classList.add('active');
+  }
+
+  setInterval(() => goToSlide(current + 1), 3500);
+})();
+
+/* ===========================
    NAVBAR + SCROLL
 =========================== */
 const navbar = document.getElementById('navbar');
