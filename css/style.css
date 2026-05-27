@@ -228,16 +228,25 @@ input, select, textarea { font-family: inherit; }
   z-index: 0; overflow: hidden;
   pointer-events: none;
 }
-#ytBg iframe {
+/* Inner div gets the aspect-ratio fullscreen sizing */
+#ytPlayer {
   position: absolute;
   top: 50%; left: 50%;
   width: 100vw;
-  height: 56.25vw;   /* 16:9 */
+  height: 56.25vw;      /* 16:9 ratio */
   min-height: 100vh;
-  min-width: 177.78vh; /* 16:9 */
+  min-width: 177.78vh;  /* 16:9 ratio */
   transform: translate(-50%, -50%);
   pointer-events: none;
-  border: none;
+}
+/* iframe fills the inner div completely */
+#ytPlayer iframe {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  border: none !important;
 }
 
 /* Particle canvas sits on top of video */
