@@ -870,6 +870,7 @@ input, select, textarea { font-family: inherit; }
 @media (max-width: 480px) {
   .hero-btns { flex-direction: column; align-items: center; }
   .hero-stats-col { grid-template-columns: 1fr 1fr; }
+  .hero-rotating-wrap { display: flex; justify-content: center; flex-wrap: wrap; width: 100%; }
 }
 
 /* ===========================
