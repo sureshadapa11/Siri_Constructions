@@ -39,11 +39,13 @@
         <a href="#contact">Contact</a>
       </nav>
       <a href="#contact" class="btn btn-primary nav-cta">Get a Quote</a>
-<button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
+
+  <!-- Hamburger outside header — lives in body stacking context for correct z-index -->
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 
   <!-- ===== HERO ===== -->
   <section id="home" class="hero">

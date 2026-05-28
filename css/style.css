@@ -144,16 +144,25 @@ input, select, textarea { font-family: inherit; }
 .nav-links a:hover { color: var(--orange); }
 .nav-cta { margin-left: 8px; padding: 10px 24px; font-size: 0.9rem; }
 .hamburger {
-  display: none; flex-direction: column; gap: 5px; padding: 4px; margin-left: auto;
-  position: relative; z-index: 1100;
+  display: none; flex-direction: column; gap: 5px;
+  padding: 10px; border-radius: 8px;
+  /* Fixed in body stacking context — always above everything */
+  position: fixed; top: 18px; right: 20px; z-index: 99999;
+  background: transparent; transition: background 0.3s ease;
 }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
-#navbar.scrolled .hamburger span { background: var(--navy); }
-/* Animate hamburger → X when nav is open */
+.hamburger span {
+  display: block; width: 26px; height: 2.5px;
+  background: #ffffff; border-radius: 2px; transition: var(--transition);
+}
+/* When navbar is scrolled (white bg), spans go dark so they're visible */
+#navbar.scrolled ~ .hamburger span { background: var(--navy); }
+/* When menu is open, always show white X (dark overlay is behind) */
+.hamburger.active span { background: #ffffff !important; }
+.hamburger.active { background: rgba(13,27,42,0.5); }
+/* Animate to X */
 .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.hamburger.active span { background: #ffffff !important; }
 
 /* ===========================
    HERO
