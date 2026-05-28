@@ -758,8 +758,14 @@
     </div>
   </footer>
 
-  <!-- Scroll to top -->
-  <button id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+  <!-- Scroll to top with progress ring -->
+  <button id="scrollTop" aria-label="Scroll to top">
+    <svg class="progress-ring" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg">
+      <circle class="progress-ring-track" cx="29" cy="29" r="25"/>
+      <circle class="progress-ring-fill" id="progressRingFill" cx="29" cy="29" r="25"/>
+    </svg>
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <!-- Mobile Nav Overlay (outside header so z-index works correctly) -->
   <div class="mobile-nav" id="mobileNav">

@@ -164,10 +164,18 @@ if (pageBar) {
 =========================== */
 const navbar = document.getElementById('navbar');
 const scrollTopBtn = document.getElementById('scrollTop');
+const ringFill = document.getElementById('progressRingFill');
+const ringCircumference = 157.08; // 2 * PI * 25
+
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
   scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
   highlightNav();
+
+  if (ringFill) {
+    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    ringFill.style.strokeDashoffset = ringCircumference * (1 - Math.min(scrolled, 1));
+  }
 });
 
 /* ===========================
