@@ -6,6 +6,7 @@ window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 800);
   initParticleCanvas();
   initRotatingText();
+  localStorage.removeItem('darkMode');
 });
 
 /* ===========================
@@ -155,23 +156,6 @@ if (pageBar) {
     clearInterval(loadTimer);
     pageBar.style.width = '100%';
     setTimeout(() => { pageBar.style.opacity = '0'; }, 500);
-  });
-}
-
-/* ===========================
-   DARK MODE TOGGLE
-=========================== */
-const darkToggle = document.getElementById('darkToggle');
-if (localStorage.getItem('darkMode') === 'true') {
-  document.body.classList.add('dark');
-  if (darkToggle) darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
-}
-if (darkToggle) {
-  darkToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    localStorage.setItem('darkMode', isDark);
-    darkToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
   });
 }
 

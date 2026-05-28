@@ -812,7 +812,6 @@ input, select, textarea { font-family: inherit; }
 @media (max-width: 768px) {
   .section { padding: 72px 0; }
   .nav-links, .nav-cta { display: none; }
-  .dark-toggle { display: none; }
   .hamburger { display: flex; }
   body.nav-open { overflow: hidden; }
   .about-grid { grid-template-columns: 1fr; }
@@ -884,46 +883,7 @@ input, select, textarea { font-family: inherit; }
 }
 @keyframes progressShimmer { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
 
-/* ===========================
-   DARK MODE TOGGLE
-=========================== */
-.dark-toggle {
-  width: 38px; height: 38px; border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.25);
-  color: rgba(255,255,255,0.8); font-size: 0.9rem;
-  display: flex; align-items: center; justify-content: center;
-  transition: var(--transition); flex-shrink: 0;
-}
-.dark-toggle:hover { background: rgba(255,255,255,0.12); color: var(--white); border-color: rgba(255,255,255,0.5); }
-#navbar.scrolled .dark-toggle { border-color: var(--border); color: var(--dark-gray); }
-#navbar.scrolled .dark-toggle:hover { background: var(--light); color: var(--orange); }
 
-/* ===========================
-   DARK MODE
-=========================== */
-body.dark {
-  --white: #111e2d;
-  --light: #162535;
-  --light-2: #1c2f42;
-  --dark-gray: #dde6f0;
-  --gray: #8fa3b8;
-  --border: #26394f;
-}
-body.dark .section-title { color: #dde6f0; }
-body.dark .service-card:not(.img-card) { background: var(--light); border-color: var(--border); }
-body.dark .service-card:not(.img-card):hover { background: var(--light-2); }
-body.dark .feature-item { background: var(--light-2); border-color: var(--border); }
-body.dark .why-item:hover { background: var(--light-2); border-color: var(--border); }
-body.dark .process-steps { background: var(--light); }
-body.dark .filter-btn { background: var(--light); border-color: var(--border); color: var(--gray); }
-body.dark .contact-form-wrap { background: var(--light); border-color: var(--border); }
-body.dark .form-group input,
-body.dark .form-group select,
-body.dark .form-group textarea { background: var(--light-2); border-color: var(--border); color: var(--dark-gray); }
-body.dark #navbar.scrolled { background: rgba(17,30,45,0.97); }
-body.dark #navbar.scrolled .logo-main { color: #dde6f0; }
-body.dark .hero-card-body h4 { color: var(--dark-gray); }
-body.dark .stat-card { background: rgba(255,255,255,0.05); }
 
 /* ===========================
    WHATSAPP FLOAT BUTTON
