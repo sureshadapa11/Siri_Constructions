@@ -243,8 +243,17 @@ input, select, textarea { font-family: inherit; }
 .hero-rotating-wrap { display: inline-block; color: var(--orange); }
 .hero-static { color: var(--white); }
 .hero-rotating { display: inline-block; color: var(--orange); position: relative; transition: opacity 0.4s ease, transform 0.4s ease; }
-.hero-rotating::after { content: '|'; animation: blink 0.8s step-end infinite; margin-left: 2px; color: var(--orange); }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.hero-emoji {
+  display: inline-block; margin-left: 8px;
+  font-size: 0.8em; vertical-align: middle;
+  animation: emojiPulse 1.4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes emojiPulse {
+  0%,100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  30%      { transform: scale(1.25) rotate(-8deg); opacity: 0.85; }
+  60%      { transform: scale(1.15) rotate(6deg); opacity: 0.9; }
+}
 .highlight { color: var(--orange); }
 
 .hero-subtitle {

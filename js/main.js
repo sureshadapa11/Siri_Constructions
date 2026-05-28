@@ -14,15 +14,19 @@ window.addEventListener('load', () => {
 =========================== */
 function initRotatingText() {
   const el = document.getElementById('heroRotating');
+  const em = document.getElementById('heroEmoji');
   if (!el) return;
-  const words = ['Dream Home', 'Office Complex', 'Dream Villa', 'Future', 'Legacy'];
+  const words  = ['Dream Home', 'Office Complex', 'Dream Villa', 'Future', 'Legacy'];
+  const emojis = ['🏠',         '🏢',            '🏡',          '🚀',     '🏗️'];
   let i = 0;
   setInterval(() => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(-12px)';
+    if (em) { em.style.opacity = '0'; em.style.transform = 'scale(0.5)'; }
     setTimeout(() => {
       i = (i + 1) % words.length;
       el.textContent = words[i];
+      if (em) em.textContent = emojis[i];
       el.style.transition = 'none';
       el.style.opacity = '0';
       el.style.transform = 'translateY(12px)';
@@ -30,6 +34,11 @@ function initRotatingText() {
         el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
+        if (em) {
+          em.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          em.style.opacity = '1';
+          em.style.transform = 'scale(1)';
+        }
       });
     }, 400);
     el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
