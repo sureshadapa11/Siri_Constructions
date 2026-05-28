@@ -240,7 +240,8 @@ input, select, textarea { font-family: inherit; }
   font-size: clamp(2.4rem, 4.5vw, 4rem);
   color: var(--white); line-height: 1.15; margin-bottom: 20px;
 }
-.hero-rotating-wrap { display: inline-flex; align-items: center; color: var(--orange); white-space: nowrap; flex-wrap: nowrap; gap: 14px; }
+.hero-rotating-wrap { display: inline-flex; align-items: center; color: var(--orange); white-space: normal; flex-wrap: wrap; gap: 0; }
+.hero-rotating-inner { display: inline-flex; align-items: center; white-space: nowrap; gap: 14px; }
 .hero-static { color: var(--white); }
 .hero-static { color: var(--white); }
 .hero-rotating { display: inline-block; color: var(--orange); position: relative; transition: opacity 0.4s ease, transform 0.4s ease; }
