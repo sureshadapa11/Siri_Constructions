@@ -814,23 +814,7 @@ input, select, textarea { font-family: inherit; }
   .nav-links, .nav-cta { display: none; }
   .dark-toggle { display: none; }
   .hamburger { display: flex; }
-  .nav-links.open {
-    display: flex; flex-direction: column;
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    width: 100vw; height: 100vh;
-    background: #0a1428;
-    align-items: center; justify-content: center; gap: 40px;
-    z-index: 1050;
-    overflow: hidden;
-  }
-  .nav-links.open a {
-    font-size: 1.5rem; color: var(--white); font-weight: 600;
-    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
-    width: 220px; text-align: center; display: block;
-  }
-  .nav-links.open a:hover { color: var(--orange); border-color: var(--orange); }
-  /* Lock body scroll when menu is open */
-  body.nav-open { overflow: hidden; height: 100vh; }
+  body.nav-open { overflow: hidden; }
   .about-grid { grid-template-columns: 1fr; }
   .about-img-secondary { display: none; }
   .experience-badge { top: 16px; left: 16px; }
@@ -850,6 +834,41 @@ input, select, textarea { font-family: inherit; }
   .hero-btns { flex-direction: column; align-items: center; }
   .hero-stats-col { grid-template-columns: 1fr 1fr; }
 }
+
+/* ===========================
+   MOBILE NAV OVERLAY
+=========================== */
+.mobile-nav {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #0b1928;
+  z-index: 9998;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0;
+  opacity: 0; visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+}
+.mobile-nav.open {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.mobile-nav a {
+  color: rgba(255,255,255,0.85); font-size: 1.4rem; font-weight: 600;
+  padding: 16px 0; width: 80%; max-width: 280px; text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: color 0.25s ease, padding-left 0.25s ease;
+  display: block;
+}
+.mobile-nav a:hover { color: var(--orange); padding-left: 12px; }
+.mobile-nav a:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+.mobile-nav-cta {
+  margin-top: 28px !important;
+  background: var(--orange) !important; color: var(--white) !important;
+  border-radius: 50px !important; border: none !important;
+  padding: 14px 36px !important; font-size: 1rem !important;
+  width: auto !important; max-width: none !important;
+}
+.mobile-nav-cta:hover { background: var(--orange-dark) !important; padding-left: 36px !important; }
 
 /* ===========================
    PAGE LOADING PROGRESS BAR
