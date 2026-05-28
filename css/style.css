@@ -871,6 +871,7 @@ input, select, textarea { font-family: inherit; }
   .hero-btns { flex-direction: column; align-items: center; }
   .hero-stats-col { grid-template-columns: 1fr 1fr; }
   .hero-rotating-wrap { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 0; line-height: 1.15; }
+  .hero-rotating-wrap + br { display: none; }
   .hero-static { display: block; line-height: 1.15; }
   .hero-rotating-inner { display: inline-flex; justify-content: center; line-height: 1.15; }
 }
